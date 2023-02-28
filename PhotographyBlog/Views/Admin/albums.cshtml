@@ -1,0 +1,49 @@
+﻿@using PhotographyBlog.Data
+@model IEnumerable<PhotographyBlog.Data.Album>
+@{
+    Layout = "_LayoutEmpty";
+}
+
+<div class="container mt-5">
+    <h2>Albums</h2>
+    <button class="btn btn-success" id="albumSave">Save</button>
+    <a class="btn btn-primary" href="@Url.Action("AlbumCreate", "Admin")">Create</a>
+    <table class="table table-striped albumList" id="diagnosis_list">
+        <thead>
+            <tr>
+                <th scope="col">Order</th>
+                <th scope="col">Name</th>
+                <th scope="col" width="30%">Description</th>
+                <th scope="col">Views</th>
+                <th scope="col">Active</th>
+                <th scope="col"> </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach(var album in Model)
+                {
+                    <tr class="album" id="@album.AlbumId">
+                        <td scope="row" class='priority'>@album.ViewOrder</td>
+                        <td><a href="@Url.Action("ImagesByAlbum", "Admin",@album.AlbumId)">@album.Name</a></td>
+                        <td style="word-wrap: break-word">@album.Description</td>
+                        <td>@album.ViewCount</td>
+                        <td>@album.Active</td>
+                        <td>
+                            <a href="@Url.Action("AlbumEdit", "Admin",album.AlbumId)" class='btn btn-edit btn-warning'>Edit</a>
+                            <a href="@Url.Action("AlbumDelete", "Admin",album.AlbumId)" class='btn btn-delete btn-danger' onclick="return confirm('Are you sure delete this album?')">Delete</a>
+                        </td>
+                    </tr>
+
+                }
+            }
+            
+            
+            
+            @*<tr><td scope="row" class='priority'>2</td><td><a href="#">John Adams</a></td><td style="word-wrap: break-word">Pear</td><td>Y</td><td>True</td><td><a class='btn btn-edit btn-warning'>Edit</a><a class='btn btn-delete btn-danger'>Delete</a></td></tr>
+            <tr><td scope="row" class='priority'>3</td><td><a href="#">Thomas Jefferson</a></td><td style="word-wrap: break-word">Banana</td><td>Y</td><td>True</td><td><a class='btn btn-edit btn-warning'>Edit</a><a class='btn btn-delete btn-danger'>Delete</a></td></tr>
+            <tr><td scope="row" class='priority'>4</td><td><a href="#">Ben Franklin</a></td><td style="word-wrap: break-word">Kumquat</td><td>N</td><td>True</td><td><a class='btn btn-edit btn-warning'>Edit</a><a class='btn btn-delete btn-danger'>Delete</a></td></tr>
+            <tr><td scope="row" class='priority'>5</td><td><a href="#">Alexander Hamilton</a></td><td style="word-wrap: break-word">Red grapes</td><td>N</td><td>True</td><td><a class='btn btn-edit btn-warning'>Edit</a><a class='btn btn-delete btn-danger'>Delete</a></td></tr>*@
+        </tbody>
+    </table>
+</div>

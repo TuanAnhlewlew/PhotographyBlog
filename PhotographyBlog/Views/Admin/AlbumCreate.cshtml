@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "_LayoutEmpty";
+}
+<div class="form-body">
+    <div class="row">
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                    <h3>Add Album</h3>
+                    <p>Fill in the data below.</p>
+                    <form asp-controller="Admin" asp-action="AlbumCreate" method="post">
+                        <div class="col-md-12">
+                            <input class="form-control" type="text" name="albumName" placeholder="Album Name*" required>
+                        </div>
+
+                        <div class="col-md-12 mt-3">
+                            <textarea class="form-control" type="text" name="albumDescription" placeholder="Description"></textarea>
+                        </div>
+
+                        <div class="form-check mt-3">
+                            <input class="form-check-input" type="checkbox" id="ActiceCB" name="active" value="True" checked>
+                            <label class="form-check-label" for="ActiceCB">
+                                Active
+                            </label>
+                        </div>
+
+                        <div class="form-button mt-3">
+                            <button id="submit" type="submit" class="btn btn-primary">ADD</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
