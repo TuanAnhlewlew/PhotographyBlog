@@ -25,13 +25,13 @@
                 {
                     <tr class="album" id="@album.AlbumId">
                         <td scope="row" class='priority'>@album.ViewOrder</td>
-                        <td><a href="@Url.Action("ImagesByAlbum", "Admin",@album.AlbumId)">@album.Name</a></td>
+                        <td><a href="@Url.Action("Photos", "Admin",new {AlbumId = album.AlbumId})">@album.Name</a></td>
                         <td style="word-wrap: break-word">@album.Description</td>
                         <td>@album.ViewCount</td>
                         <td>@album.Active</td>
                         <td>
-                            <a href="@Url.Action("AlbumEdit", "Admin",album.AlbumId)" class='btn btn-edit btn-warning'>Edit</a>
-                            <a href="@Url.Action("AlbumDelete", "Admin",album.AlbumId)" class='btn btn-delete btn-danger' onclick="return confirm('Are you sure delete this album?')">Delete</a>
+                            <a href="@Url.Action("AlbumEdit", "Admin",new {id = album.AlbumId})" class='btn btn-edit btn-warning'>Edit</a>
+                            <a href="@Url.Action("AlbumDelete", "Admin", new {id = album.AlbumId})" class='btn btn-delete btn-danger' onclick="return confirm('Are you sure delete this album?')">Delete</a>
                         </td>
                     </tr>
 

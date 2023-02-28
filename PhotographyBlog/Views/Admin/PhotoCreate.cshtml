@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "_LayoutEmpty";
+}
+@using PhotographyBlog.Data
+@model IEnumerable<PhotographyBlog.Data.Album>
+<div class="form-body">
+    <div class="row">
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                    <h3>Add Image</h3>
+                    <p>Fill in the data below.</p>
+                    <form asp-controller="admin" asp-action="PhotoCreate" method="post" enctype="multipart/form-data">
+                        <div class="col-md-12">
+                            <input class="form-control" type="file" accept="image/*" name="imageFiles" multiple="multiple" required>
+                        </div>
+
+                        <div class="col-md-12">
+                            <select class="form-select mt-3" name="albumSelect" required>
+                                <option selected disabled value="">Select Album</option>
+                                @foreach(Album album in Model)
+                                {
+                                <option value="@album.AlbumId">@album.Name</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-check mt-3">
+                            <input class="form-check-input" type="checkbox" id="ActiceCB" name="active" value="true" checked>
+                            <label class="form-check-label" for="ActiceCB">
+                                Active
+                            </label>
+                        </div>
+
+                        <div class="form-button mt-3">
+                            <button id="submit" type="submit" class="btn btn-primary">ADD</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

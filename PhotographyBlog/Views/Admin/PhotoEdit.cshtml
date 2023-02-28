@@ -1,0 +1,57 @@
+﻿@using PhotographyBlog.Data
+@using PhotographyBlog.ComModels
+@model PhotographyBlog.ComModels.PhotoEditView
+@{
+    Layout = "_LayoutEmpty";
+}
+<div class="form-body">
+    <div class="row">
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                    <h3>Add Image</h3>
+                    <p>Fill in the data below.</p>
+                    <form asp-controller="admin" asp-action="PhotoEdit" method="post" enctype="multipart/form-data">
+                        <div class="col-md-12">
+                            <img src="@Model.Photo.Link" height="100px">
+                        </div>
+                        <input type="hidden" value="@Model.Photo.PhotoId" name="id" />
+                        <div class="col-md-12">
+                            <select class="form-select mt-3" name="albumSelect" required>
+                                @foreach (Album album in Model.lstAlbum)
+                                {
+                                    if(album.AlbumId == Model.Photo.AlbumId)
+                                    {
+                                        <option value="@album.AlbumId"selected>@album.Name</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@album.AlbumId">@album.Name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-check mt-3">
+                            @if (Model.Photo.Active == true)
+                            {
+                                <input class="form-check-input" type="checkbox" id="ActiceCB" name="active" value="true" checked>
+                            }
+                            else
+                            {
+                            <input class="form-check-input" type="checkbox" id="ActiceCB" name="active" value="true">
+                            }
+                            <label class="form-check-label" for="ActiceCB">
+                                Active
+                            </label>
+                        </div>
+
+                        <div class="form-button mt-3">
+                            <button id="submit" type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

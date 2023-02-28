@@ -18,13 +18,33 @@
 
     //Save album order
     $("#albumSave").click(function () {
-        var orderAlbum = []
+        var orderAlbum = [];
         $(".album").each(function () {
             orderAlbum.push($(this).attr('id'))
         });
         $.ajax({
-            url: "admin/AlbumSave",
-            data: { order: orderAlbum },
+            url: "AlbumSave",
+            traditional: true,
+            type: 'post',
+            dataType: 'json',
+            data: { 'order': orderAlbum },
+            success: function (data) {
+                console.log(data)
+            }
+        })
+    })
+    //photo save
+    $("#photoSave").click(function () {
+        var orderPhoto = [];
+        $(".photo").each(function () {
+            orderPhoto.push($(this).attr('id'))
+        });
+        $.ajax({
+            url: "PhotoSave",
+            traditional: true,
+            type: 'post',
+            dataType: 'json',
+            data: { 'order': orderPhoto },
             success: function (data) {
                 console.log(data)
             }

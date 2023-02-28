@@ -1,0 +1,59 @@
+﻿@{
+    Layout = "_LayoutEmpty";
+    var tableId = "";
+    if (ViewBag.Sortable == true)
+        tableId = "diagnosis_list";
+}
+@using PhotographyBlog.Data
+@model IEnumerable<PhotographyBlog.Data.Photo>
+<div class="container mt-5">
+    <h2>Images</h2>
+    @if(ViewBag.Sortable == false)
+    {
+        <a href="@Url.Action("PhotoCreate", "Admin")" class="btn btn-primary">Create</a>
+    }else{
+        <button class="btn btn-success" id="photoSave">Save Order</button>
+        <a href="@Url.Action("Photos", "Admin")" class="btn btn-secondary">All images</a>
+    }
+
+    <table class="table table-striped" id="@tableId">
+        <thead>
+            <tr>
+                <th scope="col">Order</th>
+                <th scope="col">Name</th>
+                <th scope="col">Album</th>
+                <th scope="col">Preview</th>
+                <th scope="col">Active</th>
+                @if(ViewBag.Sortable == true)
+                {
+                <th scope="col"> </th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(Photo photo in Model)
+            {
+            <tr class="photo" id="@photo.PhotoId">
+                <td scope="row" class='priority'>@photo.ViewOrder</td>
+                <td>@photo.Name</td>
+                @if(ViewBag.Sortable == false)
+                {
+                        <td><a href="@Url.Action("Photos", "Admin",new {AlbumId = photo.Album.AlbumId})">@photo.Album.Name</a></td>
+                }else
+                {
+                <td>@photo.Album.Name</td>
+                }
+                <td><a href="@photo.Link" target="_blank"><img src="@photo.Link" height="80px"></a></td>
+                <td>@photo.Active</td>
+                @if(ViewBag.Sortable == true)
+                {
+                <td>
+                    <a href="@Url.Action("PhotoEdit", "Admin",new {id = photo.PhotoId})" class='btn btn-edit btn-warning'>Edit</a>
+                    <a href="@Url.Action("photoDelete", "Admin", new {id = photo.PhotoId})" class='btn btn-delete btn-danger' onclick="return confirm('Are you sure delete this photo? (you can inActive the photo)')">Delete</a>
+                </td>
+                }
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

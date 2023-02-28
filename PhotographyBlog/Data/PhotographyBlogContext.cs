@@ -129,6 +129,7 @@ public partial class PhotographyBlogContext : DbContext
                 .IsRequired()
                 .HasDefaultValueSql("'1'");
             entity.Property(e => e.AlbumId).HasColumnName("AlbumID");
+            entity.Property(e => e.Link).HasMaxLength(1024);
             entity.Property(e => e.Name).HasMaxLength(256);
             entity.Property(e => e.TimeCreate).HasMaxLength(128);
 

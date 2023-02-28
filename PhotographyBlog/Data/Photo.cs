@@ -20,6 +20,8 @@ public partial class Photo
 
     public bool? Active { get; set; }
 
+    public string? Link { get; set; }
+
     public virtual Album Album { get; set; } = null!;
 
     public virtual ICollection<Comment> Comments { get; } = new List<Comment>();
